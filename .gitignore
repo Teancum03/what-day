@@ -65,3 +65,4 @@ dist
 
 # Development databases
 dev.sqlite3
+.aider*
