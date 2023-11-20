@@ -1,15 +1,15 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 
 import PageTitle from '@/components/PageTitle'
-import { affirmation } from '@/apis/langchain/affirmationInsight'
+// import { affirmation } from '@/apis/langchain/affirmationInsight'
 
 function Monday() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-    console.log('Affirmation:', 'The quick brown fox jumps over the lazy dog.')
-    console.log('Sending affirmation...')
-    affirmation()
-  }, [])
+  // useEffect(() => {
+  //   window.scrollTo(0, 0)
+  //   console.log('Affirmation:', 'The quick brown fox jumps over the lazy dog.')
+  //   console.log('Sending affirmation...')
+  //   affirmation()
+  // }, [])
 
   return (
     <>
