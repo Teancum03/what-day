@@ -1,6 +1,6 @@
 import { expect, it, describe } from 'vitest'
 import request from 'supertest'
-import server from '../../server'
+import server from '../../routes/affirmationsroute'
 import nock from 'nock'
 
 describe('/', () => {

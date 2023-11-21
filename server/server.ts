@@ -1,6 +1,5 @@
 import * as Path from 'node:path'
 import express from 'express'
-import request from 'superagent'
 
 import testingTipRouter from './routes/testingTipsRoutes'
 
@@ -16,10 +15,5 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 server.use('/api/v1/testing-tips', testingTipRouter)
-
-server.use('/api/v1/mindful-moments', async (req, res) => {
-  const response = await request.get('https://www.affirmations.dev/')
-  res.json(response.body)
-})
 
 export default server
