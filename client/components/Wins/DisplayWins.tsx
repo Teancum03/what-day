@@ -3,7 +3,11 @@ import { Wins } from '@models/wins'
 import { useQuery } from '@tanstack/react-query'
 import Jdenticon from 'react-jdenticon'
 
-export default function DisplayWins() {
+interface Props {
+  name: string
+}
+
+export default function DisplayWins({ name }: Props) {
   const {
     data: wins,
     isLoading,
@@ -27,7 +31,7 @@ export default function DisplayWins() {
         <div className="flex-grow overflow-auto">
           <div className="flex w-full border-b-4 border-gray-300 p-8">
             <div>
-              <Jdenticon size="36" />
+              <Jdenticon size="36" value={name} />
             </div>
             <div className="ml-4 flex flex-grow flex-col">
               <textarea

@@ -19,7 +19,7 @@ function Wednesday() {
         className="text-xl tracking-tight md:text-2xl xl:text-3xl"
         style={styles}
       >
-        <DisplayWins />
+        <DisplayWins name={user?.longName}/>
       </div>
     </>
   )
