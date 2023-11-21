@@ -1,22 +1,20 @@
-// Monday.test.tsx
-
-import { render, screen } from '@testing-library/react';
+//@vitest-environment jsdom
+import { renderRoute } from '@/test/setup'; 
 import '@testing-library/jest-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import Monday from '../Monday';
-
-const queryClient = new QueryClient();
+import nock from 'nock';
 
 test('renders Monday component with PageTitle and AffirmationComponent', async () => {
-  render(
-    <QueryClientProvider client={queryClient}>
-      <Monday />
-    </QueryClientProvider>
-  );
+  const scope = nock('http://localhost')
+      .get('/api/v1/mindful-moments')
+    .reply(200, { affirmation: 'Your affirmation text' });
+
+  const screen = renderRoute('/monday'); 
 
   const pageTitleElement = await screen.findByRole('heading', { name: /mindful moments/i });
+  const affirmationComponentElement = await screen.findByText('Your affirmation text')
   expect(pageTitleElement).toBeInTheDocument();
-
-  const affirmationComponentElement = await screen.findByTestId('affirmation-component');
   expect(affirmationComponentElement).toBeInTheDocument();
+  expect(scope.isDone()).toBe(true);
 });
+
+
