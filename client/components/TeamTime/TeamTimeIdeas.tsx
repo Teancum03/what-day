@@ -26,14 +26,14 @@ export function TeamTimeIdeas() {
   }
 
   return (
-    <div className="m-auto xl:w-3/4">
-      <div className="flex flex-wrap">
-        {ideas.map((idea) => (
-          <div key={idea.id}>
-            <IdeaDialog idea={idea.idea} description={idea.description} />
-          </div>
-        ))}
-      </div>
+    // <div className="m-auto xl:w-3/4 ">
+    <div className="-m-auto flex  flex-wrap justify-center">
+      {ideas.map((idea) => (
+        <div className="m-auto w-auto p-10 " key={idea.id}>
+          <IdeaDialog idea={idea.idea} description={idea.description} />
+        </div>
+      ))}
     </div>
+    // </div>
   )
 }
