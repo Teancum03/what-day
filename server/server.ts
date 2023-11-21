@@ -16,6 +16,6 @@ if (process.env.NODE_ENV === 'production') {
 
 server.use('/api/v1/testing-tips', testingTipRouter)
 
-server.use('/ap1/v1/mindful-moments', affirmationsRouter)
+server.use('/api/v1/mindful-moments', affirmationsRouter)
 
 export default server
