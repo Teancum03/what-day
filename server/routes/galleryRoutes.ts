@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     res.json(imagesList)
   } catch (error) {
     res.status(500).json({
-      error: `Something went wrong getting images from Pexels: ${error}`,
+      error: `${error}`,
     })
   }
 })
