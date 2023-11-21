@@ -31,7 +31,7 @@ export default function DisplayWins() {
                 className="rounded-sm border border-gray-500 bg-transparent p-3"
                 name=""
                 id=""
-                rows="3"
+                rows={3}
                 placeholder="What's your win?"
               ></textarea>
               <div className="mt-2 flex justify-between">
