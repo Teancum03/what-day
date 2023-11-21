@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { getAllWins } from '../db/functions/winsDB'
+import { addWin, getAllWins } from '../db/functions/winsDB'
 import { Wins } from '@models/wins'
 
 const router = express.Router()
@@ -9,10 +9,28 @@ const router = express.Router()
 router.get('/', async (req, res) => {
   try {
     const wins: Wins[] = await getAllWins()
+
     res.json({ wins })
   } catch (error) {
     res.status(500).json({
       error: `Something went wrong getting wins from the database: ${error}`,
+    })
+  }
+})
+
+router.post('/', async (req, res) => {
+  try {
+    const newWin = req.body as Wins
+
+    if (!newWin) {
+      res.sendStatus(400)
+      return
+    }
+    const win = await addWin(newWin)
+    res.json({ win })
+  } catch (error) {
+    res.status(500).json({
+      error: `Something went wrong adding your win: ${error}`,
     })
   }
 })

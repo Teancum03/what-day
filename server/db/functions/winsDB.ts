@@ -10,6 +10,7 @@ export async function getAllWins(): Promise<Wins[]> {
 }
 
 export async function addWin(newWin: Wins): Promise<Wins> {
-  const [win] = await db('win').insert(newWin).returning('*')
+  const [win] = await db('wins').insert(newWin).returning('*')
+  console.log(win)
   return win
 }
