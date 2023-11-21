@@ -46,12 +46,12 @@ const MOCK_DATA = {
 import { describe, expect, test } from 'vitest'
 import nock from 'nock'
 import { renderRoute } from '@/test/setup'
-import { waitFor, within } from '@testing-library/react'
+import { waitFor } from '@testing-library/react'
 
 describe('Friday page renders', () => {
   test('Loading text', async () => {
-    nock('http://localhost').get('/api/v1/gallery').reply(200, MOCK_DATA)
     const screen = renderRoute('/friday')
+    nock('http://localhost').get('/api/v1/gallery').reply(200, MOCK_DATA)
     const loading = screen.getByText('Loading...')
     expect(loading).toBeInTheDocument()
   })
@@ -65,6 +65,7 @@ describe('Friday page renders', () => {
     const error = screen.getByText(/Error:/)
     expect(error).toBeInTheDocument()
   })
+
   test('Images rendered', async () => {
     nock('http://localhost').get('/api/v1/gallery').reply(200, MOCK_DATA)
     const screen = renderRoute('/friday')
