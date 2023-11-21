@@ -2,12 +2,18 @@ import request from 'superagent'
 
 import express from 'express'
 
-const server = express()
-server.use(express.json())
+const router = express.Router()
 
-server.use('/api/v1/mindful-moments', async (req, res) => {
-  const response = await request.get('https://www.affirmations.dev/')
-  res.json(response.body)
+router.get('/', async (req, res) => {
+  try {
+    const response = await request.get('https://www.affirmations.dev/')
+    console.log(response)
+  res.json(response)
+
+  } catch (error) {
+    console.log(error)
+  }
+
 })
 
-export default server
+export default router

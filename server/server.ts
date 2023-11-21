@@ -1,6 +1,6 @@
 import * as Path from 'node:path'
 import express from 'express'
-
+import affirmationsRouter from'./routes/affirmationsroute'
 import testingTipRouter from './routes/testingTipsRoutes'
 
 const server = express()
@@ -15,5 +15,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 server.use('/api/v1/testing-tips', testingTipRouter)
+
+server.use('/ap1/v1/mindful-moments', affirmationsRouter)
 
 export default server
