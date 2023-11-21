@@ -1,16 +1,6 @@
 import express from 'express'
-import { createClient } from 'pexels'
-import dotenv from 'dotenv'
-dotenv.config()
-
+import { getImages } from '../apiCalls/pexelApiCalls'
 const router = express.Router()
-const pexels = createClient(process.env.PEXELS_API_KEY || '')
-
-const getImages = async () => {
-  const query = 'Nature'
-  const images = await pexels.photos.search({ query, per_page: 1 })
-  return images
-}
 
 router.get('/', async (req, res) => {
   try {
