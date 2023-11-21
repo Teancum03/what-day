@@ -7,7 +7,7 @@ function Wednesday() {
   const { user } = useUser()
 
   const styles = {
-    marginTop: '-48px'
+    marginTop: '-48px',
   }
 
   console.log(user?.name)
@@ -15,7 +15,10 @@ function Wednesday() {
   return (
     <>
       <PageTitle descriptor="Weekly Win" day="Wednesday" />
-      <div className="text-xl tracking-tight md:text-2xl xl:text-3xl" style={styles}>
+      <div
+        className="text-xl tracking-tight md:text-2xl xl:text-3xl"
+        style={styles}
+      >
         <DisplayWins />
       </div>
     </>

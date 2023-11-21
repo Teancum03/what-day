@@ -41,12 +41,14 @@ export default function DisplayWins() {
               </div>
             </div>
           </div>
-              {wins.map((win) => (
-                <>
-                <div id="win-post" className="flex w-full border-b border-gray-300 p-8">
-                <span className="h-12 w-12 flex-shrink-0 rounded-full bg-gray-400">
-                </span>
-            <div className="ml-4 flex flex-grow flex-col">
+          {wins.map((win) => (
+            <>
+              <div
+                id="win-post"
+                className="flex w-full border-b border-gray-300 p-8"
+              >
+                <span className="h-12 w-12 flex-shrink-0 rounded-full bg-gray-400"></span>
+                <div className="ml-4 flex flex-grow flex-col">
                   {/* author */}
                   <div className="flex">
                     <span className="font-semibold">{win.author}</span>
@@ -62,10 +64,10 @@ export default function DisplayWins() {
                       Reply
                     </button>
                   </div>
-          </div>
-            </div>
-                </>
-              ))}
+                </div>
+              </div>
+            </>
+          ))}
         </div>
       </div>
     </>

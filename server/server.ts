@@ -16,6 +16,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 server.use('/api/v1/testing-tips', testingTipRouter)
-server.use('/api/v1/wins', winsRouter )
+server.use('/api/v1/wins', winsRouter)
 
 export default server
