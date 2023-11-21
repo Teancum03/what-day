@@ -11,7 +11,7 @@ export function up(knex) {
     table.text('extra_installs')
     table.text('code_from_class')
     table.text('link_to_lecture')
-  })                  
+  })
 }
 
 /**

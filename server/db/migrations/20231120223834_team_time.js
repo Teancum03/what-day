@@ -7,11 +7,10 @@ export function up(knex) {
     table.increments('id').primary()
     table.string('Idea')
     table.text('description')
-    table.string('author')
-    //  table.string('image')   
+    // table.string('author')
+    //  table.string('image')
     // table.number('vote_count')
-  }
-  )
+  })
 }
 
 /**
@@ -21,5 +20,3 @@ export function up(knex) {
 export function down(knex) {
   return knex.schema.dropTable('team_time')
 }
-
-
