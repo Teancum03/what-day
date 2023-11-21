@@ -1,14 +1,14 @@
 import * as db from '../winsDB'
-import { describe, it, expect, beforeAll, beforeEach, afterAll } from 'vitest'
+import { describe, it, expect, beforeAll, beforeEach } from 'vitest'
 
 import connection from '../../connection'
 
-beforeAll(() => {
-  return connection.migrate.latest()
+beforeAll( async () => {
+  await connection.migrate.latest()
 })
 
-beforeEach(() => {
-  return connection.seed.run()
+beforeEach(async () =>  {
+   await connection.seed.run()
 })
 
 describe('getAllWins', () => {
