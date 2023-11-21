@@ -4,11 +4,11 @@ import request from 'supertest'
 import server from '../../server'
 import { getImages } from '../../apiCalls/pexelApiCalls'
 
-import { singleImageResponse } from './mockedData/pexelResponseData'
+import { singleImageResponse } from '../../mockedData/pexelResponseData'
 
 vi.mock('../../apiCalls/pexelApiCalls')
 
-describe('gallery get route', () => {
+describe('/', () => {
   it('calls getImages', async () => {
     vi.mocked(getImages).mockImplementation(async () => {
       return singleImageResponse
@@ -26,7 +26,6 @@ describe('gallery get route', () => {
     })
 
     const res = await request(server).get('/api/v1/gallery')
-
     expect(res.statusCode).toBe(500)
     expect(res.body.error).toContain('Mocked error from getImages')
   })

@@ -7,7 +7,7 @@ export const singleImageResponse = {
       width: 4000,
       height: 2750,
       url: 'https://www.pexels.com/photo/snow-coated-rocky-mountains-772803/',
-      photographer: 'Tyler Lastovich',
+      photographer: 'jack jack',
       photographer_url: 'https://www.pexels.com/@lastly',
       photographer_id: 129858,
       avg_color: '#818C98',
