@@ -58,7 +58,7 @@ export function TestingTipsTabs() {
     data: tips,
     isLoading,
     error,
-  } = useQuery<TestingTip[]>({
+  } = useQuery<TestingTip[]>({        
     queryKey: ['tips'],
     queryFn: getTips,
   })
