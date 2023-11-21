@@ -1,4 +1,5 @@
 import { getWins } from '@/apis/winsApi'
+import { Wins } from '@models/wins'
 import { useQuery } from '@tanstack/react-query'
 
 export default function DisplayWins() {
@@ -19,19 +20,54 @@ export default function DisplayWins() {
     return <p>{`We're loading here...`}</p>
   }
 
-
   return (
     <>
-    <section>
-      <h2 id="win-title">Wins</h2>
-      <ul>
-        {wins.map((win) => (
-          <li key={win.id}>
-              {win.title} by {win.author}
-          </li>
-        ))}
-      </ul>
-    </section>
+      <div id="add-win">
+        <div className="flex-grow overflow-auto">
+          <div className="flex w-full border-b-4 border-gray-300 p-8">
+            <span className="h-12 w-12 flex-shrink-0 rounded-full bg-gray-400"></span>
+            <div className="ml-4 flex flex-grow flex-col">
+              <textarea
+                className="rounded-sm border border-gray-500 bg-transparent p-3"
+                name=""
+                id=""
+                rows="3"
+                placeholder="What's your win?"
+              ></textarea>
+              <div className="mt-2 flex justify-between">
+                <button className="flex h-8 items-center rounded-sm bg-gray-300 px-3 text-xs hover:bg-gray-400">
+                  Post
+                </button>
+              </div>
+            </div>
+          </div>
+              {wins.map((win) => (
+                <>
+                <div id="win-post" className="flex w-full border-b border-gray-300 p-8">
+                <span className="h-12 w-12 flex-shrink-0 rounded-full bg-gray-400">
+                </span>
+            <div className="ml-4 flex flex-grow flex-col">
+                  {/* author */}
+                  <div className="flex">
+                    <span className="font-semibold">{win.author}</span>
+                  </div>
+
+                  {/* title */}
+                  <p className="mt-1">{win.title}</p>
+
+                  {/* ratings */}
+                  <div className="mt-2 flex">
+                    <button className="text-sm font-semibold">Like</button>
+                    <button className="ml-2 text-sm font-semibold">
+                      Reply
+                    </button>
+                  </div>
+          </div>
+            </div>
+                </>
+              ))}
+        </div>
+      </div>
     </>
   )
 }
