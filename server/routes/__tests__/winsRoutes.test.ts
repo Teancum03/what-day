@@ -20,5 +20,6 @@ describe('/', () => {
     const res = await request(server).get('/api/v1/wins')
     expect(res.statusCode).toBe(200)
     expect(getAllWins).toHaveBeenCalled()
+    expect(res.body.wins[0].author).toBe('Anonymous Aardvark')
   })
 })
