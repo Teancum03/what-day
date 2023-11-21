@@ -64,11 +64,11 @@ export function TestingTipsTabs() {
   })
 
   if (error instanceof Error) {
-    return <div>Error: {error.message}</div>
+    return <p>Error: unable to load Testing Tips</p>
   }
 
   if (!tips || isLoading) {
-    return <div>Loading Testing Tips...</div>
+    return <p>Loading Testing Tips...</p>
   }
 
   return (
