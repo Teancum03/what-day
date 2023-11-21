@@ -55,4 +55,14 @@ describe('Friday page renders', () => {
     const loading = screen.getByText('Loading...')
     expect(loading).toBeInTheDocument()
   })
+
+  test('Error text', async () => {
+    nock('http://localhost').get('/api/v1/gallery').reply(500, MOCK_DATA)
+    const screen = renderRoute('/friday')
+    await waitFor(() =>
+      expect(screen.queryByText('Loading...')).not.toBeInTheDocument()
+    )
+    const error = screen.getByText(/Error:/)
+    expect(error).toBeInTheDocument()
+  })
 })
