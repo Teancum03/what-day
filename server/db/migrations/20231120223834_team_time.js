@@ -5,7 +5,7 @@
 export function up(knex) {
   return knex.schema.createTable('team_time', (table) => {
     table.increments('id').primary()
-    table.string('Idea')
+    table.string('idea')
     table.text('description')
   })
 }
