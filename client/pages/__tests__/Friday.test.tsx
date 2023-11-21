@@ -1,10 +1,5 @@
 //@vitest-environment jsdom
 
-// MOCK THE NETWORK REQUEST USING NOCK.
-// TEST FOR HEADER TEXT.
-// HANDLE THE PAGE LOADING.
-// HANDLE THE GET IMAGES.
-
 const MOCK_DATA = {
   page: 1,
   per_page: 1,
