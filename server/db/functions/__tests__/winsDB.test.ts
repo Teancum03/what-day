@@ -3,12 +3,12 @@ import { describe, it, expect, beforeAll, beforeEach } from 'vitest'
 
 import connection from '../../connection'
 
-beforeAll( async () => {
+beforeAll(async () => {
   await connection.migrate.latest()
 })
 
-beforeEach(async () =>  {
-   await connection.seed.run()
+beforeEach(async () => {
+  await connection.seed.run()
 })
 
 describe('getAllWins', () => {

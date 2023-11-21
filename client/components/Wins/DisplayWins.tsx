@@ -49,37 +49,33 @@ export default function DisplayWins({ name }: Props) {
             </div>
           </div>
           {wins.map((win) => (
-            
-              <div
-                key={win.id}
-                id="win-post"
-                className="flex w-full border-b border-gray-300 p-8"
-              >
-                {/* icon */}
-                {/* <span className="h-12 w-12 flex-shrink-0 rounded-full bg-gray-400"></span> */}
-                <div>
-                  <Jdenticon size="36" value={win.author} />
+            <div
+              key={win.id}
+              id="win-post"
+              className="flex w-full border-b border-gray-300 p-8"
+            >
+              {/* icon */}
+              {/* <span className="h-12 w-12 flex-shrink-0 rounded-full bg-gray-400"></span> */}
+              <div>
+                <Jdenticon size="36" value={win.author} />
+              </div>
+
+              <div className="ml-4 flex flex-grow flex-col">
+                {/* author */}
+                <div className="flex">
+                  <span className="font-semibold">{win.author}</span>
                 </div>
 
-                <div className="ml-4 flex flex-grow flex-col">
-                  {/* author */}
-                  <div className="flex">
-                    <span className="font-semibold">{win.author}</span>
-                  </div>
+                {/* title */}
+                <p className="mt-1">{win.title}</p>
 
-                  {/* title */}
-                  <p className="mt-1">{win.title}</p>
-
-                  {/* ratings */}
-                  <div className="mt-2 flex">
-                    <button className="text-sm font-semibold">Like</button>
-                    <button className="ml-2 text-sm font-semibold">
-                      Reply
-                    </button>
-                  </div>
+                {/* ratings */}
+                <div className="mt-2 flex">
+                  <button className="text-sm font-semibold">Like</button>
+                  <button className="ml-2 text-sm font-semibold">Reply</button>
                 </div>
               </div>
-            
+            </div>
           ))}
         </div>
       </div>

@@ -35,8 +35,8 @@ describe('Wins page renders', () => {
       .get('/api/v1/wins')
       .reply(200, mockWins)
 
-    const { user, ...screen } = renderRoute('/wednesday')
-
+    // const { user, ...screen } = renderRoute('/wednesday')
+    const { ...screen } = renderRoute('/wednesday')
     await waitFor(() => {
       expect(
         screen.queryByText(`We're loading here...`)
@@ -45,12 +45,11 @@ describe('Wins page renders', () => {
 
     expect(scope.isDone()).toBe(true)
 
-    
     const newWin = await screen.findByRole('textbox')
     // user.type(newWin, 'I win')
-    
+
     expect(newWin).toBeInTheDocument()
-    
+
     // expect(newWin).toContain('I win')
   })
 })
