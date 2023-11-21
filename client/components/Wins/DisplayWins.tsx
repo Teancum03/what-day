@@ -45,8 +45,9 @@ export default function DisplayWins() {
             </div>
           </div>
           {wins.map((win) => (
-            <>
+            
               <div
+                key={win.id}
                 id="win-post"
                 className="flex w-full border-b border-gray-300 p-8"
               >
@@ -74,7 +75,7 @@ export default function DisplayWins() {
                   </div>
                 </div>
               </div>
-            </>
+            
           ))}
         </div>
       </div>
