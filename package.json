@@ -29,10 +29,12 @@
   },
   "dependencies": {
     "@devacademy/eslint-config": "^1.9.1",
+    "dotenv": "^16.3.1",
     "express": "^4.17.2",
     "knex": "^2.5.1",
     "langchain": "^0.0.192",
     "openai": "^4.19.0",
+    "pexels": "^1.4.0",
     "sqlite3": "^5.1.6",
     "superagent": "7.1.1"
   },
