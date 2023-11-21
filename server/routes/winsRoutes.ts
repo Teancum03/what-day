@@ -1,14 +1,14 @@
 import express from 'express'
 
 import { addWin, getAllWins } from '../db/functions/winsDB'
-import { Wins } from '@models/wins'
+import { Win } from '@models/wins'
 
 const router = express.Router()
 
 // GET /api/v1/wins
 router.get('/', async (req, res) => {
   try {
-    const wins: Wins[] = await getAllWins()
+    const wins: Win[] = await getAllWins()
 
     res.json({ wins })
   } catch (error) {
@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const newWin = req.body as Wins
+    const newWin = req.body as Win
 
     if (!newWin) {
       res.sendStatus(400)
