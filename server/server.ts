@@ -1,6 +1,6 @@
 import * as Path from 'node:path'
 import express from 'express'
-import affirmationsRouter from'./routes/affirmationsroute'
+import affirmationsRouter from './routes/affirmationsroute'
 import testingTipRouter from './routes/testingTipsRoutes'
 
 const server = express()
