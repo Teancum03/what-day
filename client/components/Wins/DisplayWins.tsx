@@ -1,6 +1,7 @@
 import { getWins } from '@/apis/winsApi'
 import { Wins } from '@models/wins'
 import { useQuery } from '@tanstack/react-query'
+import Jdenticon from 'react-jdenticon'
 
 export default function DisplayWins() {
   const {
@@ -25,7 +26,9 @@ export default function DisplayWins() {
       <div id="add-win">
         <div className="flex-grow overflow-auto">
           <div className="flex w-full border-b-4 border-gray-300 p-8">
-            <span className="h-12 w-12 flex-shrink-0 rounded-full bg-gray-400"></span>
+            <div>
+              <Jdenticon size="36" />
+            </div>
             <div className="ml-4 flex flex-grow flex-col">
               <textarea
                 className="rounded-sm border border-gray-500 bg-transparent p-3"
@@ -47,7 +50,12 @@ export default function DisplayWins() {
                 id="win-post"
                 className="flex w-full border-b border-gray-300 p-8"
               >
-                <span className="h-12 w-12 flex-shrink-0 rounded-full bg-gray-400"></span>
+                {/* icon */}
+                {/* <span className="h-12 w-12 flex-shrink-0 rounded-full bg-gray-400"></span> */}
+                <div>
+                  <Jdenticon size="36" value={win.author} />
+                </div>
+
                 <div className="ml-4 flex flex-grow flex-col">
                   {/* author */}
                   <div className="flex">
