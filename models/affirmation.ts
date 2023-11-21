@@ -1,3 +1,3 @@
 export interface Affirmation {
-    affirmation: string
-  }
+  affirmation: string
+}

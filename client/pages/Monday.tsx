@@ -1,6 +1,5 @@
-
-import PageTitle from '@/components/PageTitle';
-import AffirmationComponent from '../components/Affirmations'; 
+import PageTitle from '@/components/PageTitle'
+import AffirmationComponent from '../components/Affirmations'
 
 function Monday() {
   return (
@@ -10,8 +9,7 @@ function Monday() {
         <AffirmationComponent />
       </div>
     </>
-  );
+  )
 }
 
-export default Monday;
-
+export default Monday
