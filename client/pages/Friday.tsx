@@ -11,7 +11,7 @@ function Friday() {
   } = useQuery({ queryKey: ['gallery'], queryFn: getImages })
 
   if (isPending) return <div>Loading...</div>
-  if (error) return <div>Error: {error.message}</div>
+  if (error) return <div>Error:</div>
 
   return (
     <>
