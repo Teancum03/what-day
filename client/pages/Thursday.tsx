@@ -3,10 +3,6 @@ import { useUser } from '@/hooks/user'
 import { TeamTimeIdeas } from '@/components/TeamTime/TeamTimeIdeas'
 
 function Thursday() {
-  const { user } = useUser()
-
-  console.log(user?.name)
-
   return (
     <>
       <PageTitle descriptor="Team Time" day="Thursday" />
