@@ -1,9 +1,4 @@
 import { useQuery } from '@tanstack/react-query'
-import React, { Ref } from 'react'
-import { Link } from 'react-router-dom'
-import classNames from 'classnames'
-import * as Tabs from '@radix-ui/react-tabs'
-
 import { TeamTime } from '@models/teamTime'
 import { getIdeas } from '@/apis/teamTimeApi'
 import IdeaDialog from '@/components/TeamTime/IdeaDialog'
@@ -26,7 +21,6 @@ export function TeamTimeIdeas() {
   }
 
   return (
-    // <div className="m-auto xl:w-3/4 ">
     <div className=" flex  flex-wrap justify-center">
       {ideas.map((idea) => (
         <div className="m-5  w-auto p-10 " key={idea.id}>
@@ -34,6 +28,5 @@ export function TeamTimeIdeas() {
         </div>
       ))}
     </div>
-    // </div>
   )
 }
