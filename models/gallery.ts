@@ -29,3 +29,7 @@ export type PexelsResponse = {
   next_page?: string | null
   prev_page?: string | null
 }
+
+export type ImageSearch = {
+  search: string
+}
