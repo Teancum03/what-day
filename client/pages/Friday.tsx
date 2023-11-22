@@ -3,15 +3,21 @@ import { useQuery } from '@tanstack/react-query'
 import { getImages } from '@/apis/galleryApi'
 import DisplayImage from '@/components/DisplayImage'
 import SearchBar from '@/components/SearchBar'
+import { useSearchParams } from 'react-router-dom'
 
 function Friday() {
+  const [searchParams] = useSearchParams()
+  const myParam = searchParams.get('image')
+
+  // generate new queryKey from route params-
+  // build additional cache stores rather than replacing
   const {
     data: images,
     isPending,
     error,
-  } = useQuery({ 
-    queryKey: ['gallery'], 
-    queryFn: () => getImages('default') 
+  } = useQuery({
+    queryKey: ['gallery', myParam],
+    queryFn: () => getImages(myParam || 'default'),
   })
 
   if (isPending) return <div>Loading...</div>
