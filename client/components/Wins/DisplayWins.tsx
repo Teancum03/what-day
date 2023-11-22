@@ -1,10 +1,10 @@
-import { getWins } from '@/apis/winsApi'
-import { Win, WinData } from '@models/wins'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { WinData } from '@models/wins'
+
 import { useState } from 'react'
 import Jdenticon from 'react-jdenticon'
-import { addWin } from '@/apis/winsApi'
+
 import { getShortName } from '@/lib/utils'
+import { useWin } from '@/hooks/wins'
 
 interface Props {
   name: string
@@ -16,32 +16,10 @@ const initialFormData = {
 }
 
 export default function DisplayWins({ name }: Props) {
-  const {
-    data: wins,
-    isLoading,
-    error,
-  } = useQuery<Win[]>({
-    queryKey: ['wins'],
-    queryFn: getWins,
-  })
+  const { data: wins, isLoading, error } = useWin()
 
   const [form, setForm] = useState<WinData>(initialFormData)
-
-  const queryClient = useQueryClient()
-
-  const winMutation = useMutation({
-    mutationFn: addWin,
-    onSuccess: (newWin) => {
-      const currentWins = queryClient.getQueryData<Win[]>(['wins'])
-      if (currentWins) {
-        console.log('currentwin', currentWins)
-        console.log('newwin', newWin)
-        queryClient.setQueryData(['wins'], [...currentWins, newWin])
-      } else {
-        queryClient.invalidateQueries({ queryKey: ['wins'] })
-      }
-    },
-  })
+  const { addWin } = useWin()
 
   if (error) {
     return <p>{`There was an error trying to load the wins!`}</p>
@@ -60,17 +38,17 @@ export default function DisplayWins({ name }: Props) {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    winMutation.mutate(form)
+    await addWin.mutate(form)
     setForm(initialFormData)
   }
 
-  if (winMutation.isPending) {
-    return <p>{`Adding your win...`}</p>
-  }
+  // if (winMutation.isPending) {
+  //   return <p>{`Adding your win...`}</p>
+  // }
 
-  if (winMutation.isError) {
-    return <p>{`There was an error trying to add your win 😭`}</p>
-  }
+  // if (winMutation.isError) {
+  //   return <p>{`There was an error trying to add your win 😭`}</p>
+  // }
 
   return (
     <>
@@ -105,37 +83,41 @@ export default function DisplayWins({ name }: Props) {
               </form>
             </div>
           </div>
-          {wins.sort((a, b) =>( b.id - a.id)).map((win) => (
-            <div
-              key={win.id}
-              id="win-post"
-              className="flex w-full border-b border-gray-300 p-8"
-            >
-              {/* icon */}
-              {/* <span className="h-12 w-12 flex-shrink-0 rounded-full bg-gray-400"></span> */}
-              <div>
-                <Jdenticon size="36" value={win.author} />
-              </div>
-
-              <div className="ml-4 flex flex-grow flex-col">
-                {/* author */}
-                <div className="flex">
-                  <span className="font-semibold">
-                    {getShortName(win.author)}
-                  </span>
+          {wins
+            .sort((a, b) => b.id - a.id)
+            .map((win) => (
+              <div
+                key={win.id}
+                id="win-post"
+                className="flex w-full border-b border-gray-300 p-8"
+              >
+                {/* icon */}
+                {/* <span className="h-12 w-12 flex-shrink-0 rounded-full bg-gray-400"></span> */}
+                <div>
+                  <Jdenticon size="36" value={win.author} />
                 </div>
 
-                {/* title */}
-                <p className="mt-1">{win.title}</p>
+                <div className="ml-4 flex flex-grow flex-col">
+                  {/* author */}
+                  <div className="flex">
+                    <span className="font-semibold">
+                      {getShortName(win.author)}
+                    </span>
+                  </div>
 
-                {/* ratings */}
-                <div className="mt-2 flex">
-                  <button className="text-sm font-semibold">Like</button>
-                  <button className="ml-2 text-sm font-semibold">Reply</button>
+                  {/* title */}
+                  <p className="mt-1">{win.title}</p>
+
+                  {/* ratings */}
+                  <div className="mt-2 flex">
+                    <button className="text-sm font-semibold">Like</button>
+                    <button className="ml-2 text-sm font-semibold">
+                      Reply
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </>
