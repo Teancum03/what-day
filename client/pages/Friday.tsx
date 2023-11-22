@@ -2,6 +2,7 @@ import PageTitle from '@/components/PageTitle'
 import { useQuery } from '@tanstack/react-query'
 import { getImages } from '@/apis/galleryApi'
 import DisplayImage from '@/components/DisplayImage'
+import AddBackgroundForm from '@/components/AddBackGroundForm'
 
 function Friday() {
   const {
@@ -20,6 +21,14 @@ function Friday() {
         {images.photos.map((image) => (
           <DisplayImage key={image.id} image={image} />
         ))}
+      </div>
+      <div className="userImagesDisplay">
+        <div className="text-xl tracking-tight md:text-2xl xl:text-3xl">
+          {images.photos.map((image) => (
+            <DisplayImage key={image.id} image={image} />
+          ))}
+        </div>
+        <AddBackgroundForm />
       </div>
     </>
   )

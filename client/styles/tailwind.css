@@ -345,3 +345,22 @@ h3 {
   width: 100%;
   position: absolute;
 }
+
+.userImagesDisplay {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 1rem;
+  gap: 1rem;
+  padding: 1rem;
+  border: solid black 1px;
+  border-radius: 1rem;
+}
+
+.AddBackgroundForm {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0.5rem;
+  align-items: center;
+  justify-items: left;
+  gap: 0.5rem;
+}
