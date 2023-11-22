@@ -36,7 +36,6 @@ describe('Wins page renders', () => {
       .reply(200, mockWins)
 
     const { user, ...screen } = renderRoute('/wednesday')
-    // const { ...screen } = renderRoute('/wednesday')
     await waitFor(() => {
       expect(
         screen.queryByText(`We're loading here...`)

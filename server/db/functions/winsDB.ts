@@ -12,6 +12,5 @@ export async function getAllWins(): Promise<Win[]> {
 
 export async function addWin(newWin: WinData): Promise<Win> {
   const [win] = await db('wins').insert(newWin).returning('*')
-  console.log(win)
   return win
 }
