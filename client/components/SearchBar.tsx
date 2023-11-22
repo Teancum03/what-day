@@ -1,17 +1,13 @@
 import { useState } from 'react'
-import { getImages } from '@/apis/galleryApi'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useNavigate } from 'react-router-dom'
 
 function SearchBar() {
-  const [search, setSearch] = useState('test')
-  const queryClient = useQueryClient()
+  const [search, setSearch] = useState('default')
+  const navigate = useNavigate()
 
-  const { mutate } = useMutation({
-    mutationFn: getImages,
-    onSuccess: async (res) => {
-      queryClient.setQueryData(['gallery'], res)
-    },
-  })
+  function handleNavigate() {
+    navigate({ pathname: '/friday', search: `image=${search}` })
+  }
 
   return (
     <div className="friday-searchbar">
@@ -20,7 +16,7 @@ function SearchBar() {
         type="text"
         placeholder="Search"
       />
-      <button onClick={() => mutate(search)}>Find</button>
+      <button onClick={handleNavigate}>Find</button>
     </div>
   )
 }
