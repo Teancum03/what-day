@@ -40,6 +40,11 @@ export default function DisplayWins({ name }: Props) {
     setForm(initialFormData)
   }
 
+   // isPending is react query v5
+  // if (fruitMutation.isPending {
+  //   return <p>Adding your fruit!</p>
+  // }
+
  
 
   return (
@@ -51,28 +56,34 @@ export default function DisplayWins({ name }: Props) {
               <Jdenticon size="36" value={name} />
             </div>
             <div className="ml-4 flex flex-grow flex-col">
-              <form
-                className="ml-4 flex flex-grow flex-col"
-                onSubmit={handleSubmit}
-                aria-label="Add Win"
-              >
-                <textarea
-                  className="rounded-sm border border-gray-500 bg-transparent p-3"
-                  name=""
-                  id=""
-                  rows={3}
-                  placeholder="What's your win?"
-                  onChange={handleChange}
-                ></textarea>
-                <div className="mt-2 flex justify-between">
-                  <button
-                    className="flex h-8 items-center rounded-sm bg-gray-300 px-3 text-xs hover:bg-gray-400"
-                    type="submit"
-                  >
-                    Post
-                  </button>
-                </div>
-              </form>
+              {addWin.isPending ? (
+                <p>Adding your Win!</p>
+              ) : (
+                <form
+                  className="ml-4 flex flex-grow flex-col"
+                  onSubmit={handleSubmit}
+                  aria-label="Add Win"
+  
+                >
+                  <textarea
+                    className="rounded-sm border border-gray-500 bg-transparent p-3"
+                    name=""
+                    id=""
+                    rows={3}
+                    placeholder="What's your win?"
+                    onChange={handleChange}
+                  ></textarea>
+                  <div className="mt-2 flex justify-between">
+                    <button
+                      className="flex h-8 items-center rounded-sm bg-gray-300 px-3 text-xs hover:bg-gray-400"
+                      type="submit"
+                    >
+                      Post
+                    </button>
+                  </div>
+                </form>   
+              )
+              }
             </div>
           </div>
           {wins
