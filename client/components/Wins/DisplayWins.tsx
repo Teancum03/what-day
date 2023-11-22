@@ -31,8 +31,6 @@ export default function DisplayWins({ name }: Props) {
 
   function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
     const { value } = event.target
-
-    console.log('this is the form:', form)
     setForm({ ...form, title: value, author: name })
   }
 
