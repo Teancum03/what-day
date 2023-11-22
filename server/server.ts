@@ -22,5 +22,5 @@ server.use('/api/v1/gallery', galleryRouter)
 server.use('/api/v1/wins', winsRouter)
 
 server.use('/api/v1/mindful-moments', affirmationsRouter)
-server.use("/api/v1/team-time", teamTimeRouter)
+server.use('/api/v1/team-time', teamTimeRouter)
 export default server

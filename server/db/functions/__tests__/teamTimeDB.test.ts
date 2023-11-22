@@ -19,7 +19,9 @@ describe('getAllIdeas', () => {
     expect(allIdeas[0].id).toBe(1)
     expect(allIdeas[0].idea).toBe('Duck vs Bear')
 
-    expect(allIdeas[0].description).toBe('An app that gets users to choose between to scary options at a time and shows a list of the most scary!')
+    expect(allIdeas[0].description).toBe(
+      'An app that gets users to choose between to scary options at a time and shows a list of the most scary!'
+    )
   })
 
   afterAll(() => {

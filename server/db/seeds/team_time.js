@@ -34,13 +34,15 @@ export async function seed(knex) {
     {
       id: 5,
       idea: 'Blogging Platform',
-      description: 'Develop a platform for users to create and publish their own blogs. Include features like user registration, post creation and editing, commenting system, and search functionality.',
+      description:
+        'Develop a platform for users to create and publish their own blogs. Include features like user registration, post creation and editing, commenting system, and search functionality.',
     },
 
     {
       id: 6,
       idea: 'Event Management System',
-      description: 'Build a system to manage and display upcoming events, such as conferences or concerts. Include features like event registration, ticketing, event details, and notifications.',
+      description:
+        'Build a system to manage and display upcoming events, such as conferences or concerts. Include features like event registration, ticketing, event details, and notifications.',
     },
     {
       id: 7,
@@ -52,13 +54,15 @@ export async function seed(knex) {
     {
       id: 8,
       idea: 'Online Learning Platform',
-      description: 'Build an online learning platform that offers courses in various subjects. Include features such as course catalog, enrollment, progress tracking, quizzes, and discussion forums.',
+      description:
+        'Build an online learning platform that offers courses in various subjects. Include features such as course catalog, enrollment, progress tracking, quizzes, and discussion forums.',
     },
 
     {
       id: 9,
       idea: 'Job Board',
-      description: 'Develop a job board website where employers can post job openings and job seekers can search and apply for jobs. Implement features like job search filters, resume uploading, and email notifications for new job postings.',
+      description:
+        'Develop a job board website where employers can post job openings and job seekers can search and apply for jobs. Implement features like job search filters, resume uploading, and email notifications for new job postings.',
     },
   ])
 }
