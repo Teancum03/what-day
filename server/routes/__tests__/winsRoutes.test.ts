@@ -54,7 +54,6 @@ describe('/', () => {
 
     const response = await request(server).get('/api/v1/wins')
 
-    
     expect(response.status).toBe(500)
     expect(response.text).toContain(
       `Something went wrong getting wins from the database: ${error}`

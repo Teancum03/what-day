@@ -10,8 +10,6 @@ function Wednesday() {
     marginTop: '-48px',
   }
 
- 
-
   return (
     <>
       <PageTitle descriptor="Weekly Win" day="Wednesday" />

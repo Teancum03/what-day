@@ -5,9 +5,8 @@ import { Win, WinData } from '@models/wins'
 const db = connection
 
 export async function getAllWins(): Promise<Win[]> {
-  const wins = await db<Win>('wins')
-    .select('title', 'author', 'id')
-    
+  const wins = await db<Win>('wins').select('title', 'author', 'id')
+
   return wins
 }
 

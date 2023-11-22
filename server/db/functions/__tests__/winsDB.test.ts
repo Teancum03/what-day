@@ -3,12 +3,12 @@ import { describe, it, expect, beforeAll, beforeEach } from 'vitest'
 
 import connection from '../../connection'
 
-beforeAll( async () => {
+beforeAll(async () => {
   await connection.migrate.latest()
 })
 
-beforeEach(async () =>  {
-   await connection.seed.run()
+beforeEach(async () => {
+  await connection.seed.run()
 })
 
 describe('getAllWins', () => {
@@ -27,6 +27,6 @@ describe('addWins', () => {
       author: 'A Test Author',
     })
     const allWins = await db.getAllWins()
-    expect(allWins).toHaveLength(currentWins.length+1)
+    expect(allWins).toHaveLength(currentWins.length + 1)
   })
 })
