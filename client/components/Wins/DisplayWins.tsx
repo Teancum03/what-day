@@ -42,13 +42,7 @@ export default function DisplayWins({ name }: Props) {
     setForm(initialFormData)
   }
 
-  // if (winMutation.isPending) {
-  //   return <p>{`Adding your win...`}</p>
-  // }
-
-  // if (winMutation.isError) {
-  //   return <p>{`There was an error trying to add your win 😭`}</p>
-  // }
+ 
 
   return (
     <>
@@ -92,7 +86,7 @@ export default function DisplayWins({ name }: Props) {
                 className="flex w-full border-b border-gray-300 p-8"
               >
                 {/* icon */}
-                {/* <span className="h-12 w-12 flex-shrink-0 rounded-full bg-gray-400"></span> */}
+                
                 <div>
                   <Jdenticon size="36" value={win.author} />
                 </div>
