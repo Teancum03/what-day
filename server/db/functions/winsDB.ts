@@ -7,7 +7,7 @@ const db = connection
 export async function getAllWins(): Promise<Win[]> {
   const wins = await db<Win>('wins')
     .select('title', 'author', 'id')
-    // .orderBy('id', 'desc')
+    
   return wins
 }
 

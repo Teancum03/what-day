@@ -18,6 +18,7 @@ describe('/', () => {
       ]
     })
     const res = await request(server).get('/api/v1/wins')
+
     expect(res.statusCode).toBe(200)
     expect(getAllWins).toHaveBeenCalled()
     expect(res.body.wins[0].author).toBe('Anonymous Aardvark')
@@ -45,5 +46,18 @@ describe('/', () => {
         "title": "passing tests",
       }
     `)
+  })
+  it('returns an error if getAllWins throws', async () => {
+    const error = new Error('DATABASE ERROR: unable to get wins')
+    vi.mocked(getAllWins).mockRejectedValue(error)
+    vi.spyOn(console, 'log').mockImplementation(() => {})
+
+    const response = await request(server).get('/api/v1/wins')
+
+    
+    expect(response.status).toBe(500)
+    expect(response.text).toContain(
+      `Something went wrong getting wins from the database: ${error}`
+    )
   })
 })
