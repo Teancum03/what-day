@@ -2,7 +2,7 @@ import { expect, it, vi, describe } from 'vitest'
 import request from 'supertest'
 
 import server from '../../server'
-import { getAllWins } from '../../db/functions/winsDB'
+import { addWin, getAllWins } from '../../db/functions/winsDB'
 
 vi.mock('../../db/functions/winsDB')
 
@@ -21,5 +21,29 @@ describe('/', () => {
     expect(res.statusCode).toBe(200)
     expect(getAllWins).toHaveBeenCalled()
     expect(res.body.wins[0].author).toBe('Anonymous Aardvark')
+  })
+  it('calls addWin', async () => {
+    vi.mocked(addWin).mockResolvedValue({
+      id: 999,
+      title: 'passing tests',
+      author: 'Bedazzling Bulbuous Bonobo',
+    })
+
+    const response = await request(server)
+      .post('/api/v1/wins/')
+      .send({ title: 'passing tests', author: 'Bedazzling Bulbuous Bonobo' })
+
+    expect(vi.mocked(addWin)).toHaveBeenCalledWith({
+      title: 'passing tests',
+      author: 'Bedazzling Bulbuous Bonobo',
+    })
+    expect(response.status).toBe(200)
+    expect(response.body.win).toMatchInlineSnapshot(`
+      {
+        "author": "Bedazzling Bulbuous Bonobo",
+        "id": 999,
+        "title": "passing tests",
+      }
+    `)
   })
 })
