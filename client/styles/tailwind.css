@@ -355,7 +355,7 @@ h3 {
 
 .DialogContent {
   background-color: white;
-  border-radius: 6px;
+  border-radius: 8px;
   box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
     hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
   position: fixed;
@@ -376,7 +376,8 @@ h3 {
   margin: 0;
   font-weight: 500;
   color: var(--mauve-12);
-  font-size: 17px;
+  font-size: 25px;
+  text-align: center;
 }
 
 .DialogDescription {
@@ -384,39 +385,61 @@ h3 {
   color: var(--mauve-11);
   font-size: 15px;
   line-height: 1.5;
+  text-align: center;
 }
 
-.Button {
+.ButtonIdea {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  padding: 0 15px;
-  font-size: 25px;
+  border-radius: 8px;
+  padding: 20px;
+  font-size: 30px;
   font-family: sans-serif;
   line-height: 1;
   font-weight: 500;
   height: 50px;
+  width: 20vh;
 }
-.Button.violet {
-  background-color: white;
-  color: var(--violet-11);
+.ButtonIdea.violet {
+  background-image: linear-gradient(
+    225deg,
+    #f1fa8c,
+    #ffe57a,
+    #ffcf74,
+    #ffb979,
+    #ffa286,
+    #ff8f99,
+    #ff80af,
+    #ff79c6
+  );
+  color: var(--black-a9);
   box-shadow: 0 2px 10px var(--black-a7);
 }
-.Button.violet:hover {
-  background-color: var(--mauve-3);
+.ButtonIdea.violet:hover {
+  background-image: linear-gradient(
+    225deg,
+    #ff79c6,
+    #ff80af,
+    #ff8f99,
+    #ffa286,
+    #ffb979,
+    #ffcf74,
+    #ffe57a,
+    #f1fa8c
+  );
 }
-.Button.violet:focus {
+.ButtonIdea.violet:focus {
   box-shadow: 0 0 0 2px black;
 }
-.Button.green {
+.ButtonIdea.green {
   background-color: var(--green-4);
   color: var(--green-11);
 }
-.Button.green:hover {
+.ButtonIdea.green:hover {
   background-color: var(--green-5);
 }
-.Button.green:focus {
+.ButtonIdea.green:focus {
   box-shadow: 0 0 0 2px var(--green-7);
 }
 

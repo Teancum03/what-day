@@ -27,9 +27,9 @@ export function TeamTimeIdeas() {
 
   return (
     // <div className="m-auto xl:w-3/4 ">
-    <div className="-m-auto flex  flex-wrap justify-center">
+    <div className=" flex  flex-wrap justify-center">
       {ideas.map((idea) => (
-        <div className="m-auto w-auto p-10 " key={idea.id}>
+        <div className="m-5  w-auto p-10 " key={idea.id}>
           <IdeaDialog idea={idea.idea} description={idea.description} />
         </div>
       ))}

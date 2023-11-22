@@ -11,7 +11,7 @@ interface Props {
 const IdeaDialog = (props: Props) => (
   <Dialog.Root>
     <Dialog.Trigger asChild>
-      <button className="Button violet"> {props.idea} </button>
+      <button className="ButtonIdea violet"> {props.idea} </button>
     </Dialog.Trigger>
     <Dialog.Portal>
       <Dialog.Overlay className="DialogOverlay" />

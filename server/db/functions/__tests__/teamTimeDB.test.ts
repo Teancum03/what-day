@@ -15,7 +15,7 @@ describe('getAllIdeas', () => {
   it('gets the complete list of ideas', async () => {
     const allIdeas = await db.getAllIdeas()
     console.log(allIdeas)
-    expect(allIdeas).toHaveLength(3)
+    expect(allIdeas).toHaveLength(9)
     expect(allIdeas[0].id).toBe(1)
     expect(allIdeas[0].idea).toBe('Duck vs Bear')
 
