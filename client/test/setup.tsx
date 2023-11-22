@@ -6,7 +6,6 @@ import '@testing-library/jest-dom/vitest'
 import { RouterProvider, createMemoryRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Jdenticon from 'react-jdenticon'
-
 import { routes } from '@/routes'
 
 vi.mock('react-jdenticon')
