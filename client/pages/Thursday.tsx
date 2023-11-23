@@ -1,5 +1,4 @@
 import PageTitle from '@/components/PageTitle'
-import { useUser } from '@/hooks/user'
 import { TeamTimeIdeas } from '@/components/TeamTime/TeamTimeIdeas'
 
 function Thursday() {
