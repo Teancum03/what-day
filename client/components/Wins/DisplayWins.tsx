@@ -21,6 +21,8 @@ export default function DisplayWins({ name }: Props) {
   const [form, setForm] = useState<WinData>(initialFormData)
   const { addWin } = useWin()
 
+  const [likes, setLikes] = useState<{ [winId: number]: number }>({})
+
   if (error) {
     return <p>{`There was an error trying to load the wins!`}</p>
   }
@@ -38,6 +40,12 @@ export default function DisplayWins({ name }: Props) {
     event.preventDefault()
     await addWin.mutate(form)
     setForm(initialFormData)
+  }
+  const handleLikeClick = (winId: number) => {
+    setLikes((prevLikes) => ({
+      ...prevLikes,
+      [winId]: (prevLikes[winId] || 0) + 1,
+    }))
   }
 
   return (
@@ -105,9 +113,11 @@ export default function DisplayWins({ name }: Props) {
 
                   {/* ratings */}
                   <div className="mt-2 flex">
-                    <button className="text-sm font-semibold">Like</button>
-                    <button className="ml-2 text-sm font-semibold">
-                      Reply
+                    <button
+                      className="text-sm font-semibold"
+                      onClick={() => handleLikeClick(win.id)}
+                    >
+                      Like ({likes[win.id] || 0})
                     </button>
                   </div>
                 </div>
