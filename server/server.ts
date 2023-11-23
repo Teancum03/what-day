@@ -1,8 +1,10 @@
 import * as Path from 'node:path'
 import express from 'express'
-
+import affirmationsRouter from './routes/affirmationsroute'
 import testingTipRouter from './routes/testingTipsRoutes'
 import galleryRouter from './routes/galleryRoutes'
+import winsRouter from './routes/winsRoutes'
+import teamTimeRouter from './routes/teamTimeRouter'
 
 const server = express()
 server.use(express.json())
@@ -17,5 +19,8 @@ if (process.env.NODE_ENV === 'production') {
 
 server.use('/api/v1/testing-tips', testingTipRouter)
 server.use('/api/v1/gallery', galleryRouter)
+server.use('/api/v1/wins', winsRouter)
 
+server.use('/api/v1/mindful-moments', affirmationsRouter)
+server.use('/api/v1/team-time', teamTimeRouter)
 export default server
