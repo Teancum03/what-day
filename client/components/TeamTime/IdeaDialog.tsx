@@ -1,10 +1,12 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { Cross2Icon } from '@radix-ui/react-icons'
 import '@/styles/tailwind.css'
+import DisplayAuthor from '../DisplayAuthor'
 
 interface Props {
   idea: string
   description: string
+  author: string
 }
 const IdeaDialog = (props: Props) => (
   <Dialog.Root>
@@ -15,10 +17,13 @@ const IdeaDialog = (props: Props) => (
       <Dialog.Overlay className="DialogOverlay" />
       <Dialog.Content className="DialogContent">
         <Dialog.Title className="DialogTitle">{props.idea}</Dialog.Title>
-        <Dialog.Description className="DialogDescription"></Dialog.Description>
-        <fieldset className="Fieldset">
-          <p>{props.description}</p>
-        </fieldset>
+        <Dialog.Description className="DialogDescription">
+          {' '}
+          <fieldset className="Fieldset">
+            <p>{props.description}</p>
+            <DisplayAuthor name={props.author} />
+          </fieldset>
+        </Dialog.Description>
         <div
           style={{ display: 'flex', marginTop: 25, justifyContent: 'flex-end' }}
         ></div>
