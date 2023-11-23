@@ -11,10 +11,13 @@ function SearchBar() {
 
   return (
     <div className="friday-searchbar">
+      <label htmlFor="searchbar">Search</label>
       <input
         onChange={(e) => setSearch(e.target.value)}
         type="text"
         placeholder="Search"
+        name="searchbar"
+        id="searchbar"
       />
       <button onClick={handleNavigate}>Find</button>
     </div>
