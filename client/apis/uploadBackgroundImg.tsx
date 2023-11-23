@@ -1,17 +1,18 @@
-const uploadBackgroundImg = async (file: File) => {
+import request from 'superagent'
+
+interface ImageFormData {
+  image: File
+  name: string
+}
+
+const uploadBackgroundImg = async ({ image, name }: ImageFormData) => {
   const formData = new FormData()
-  formData.append('file', file)
+  formData.append('image', image)
+  formData.append('name', name)
 
-  const response = await fetch('/api/upload', {
-    method: 'POST',
-    body: formData,
-  })
+  const response = await request.post('/api/v1/userImgs').send(formData)
 
-  if (!response.ok) {
-    throw new Error('File upload failed')
-  }
-
-  return response.json()
+  return response
 }
 
 export default uploadBackgroundImg

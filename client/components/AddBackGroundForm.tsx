@@ -13,7 +13,7 @@ const AddBackgroundForm = () => {
   const [imgName, setImgName] = useState<string>('')
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
+    if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0]
       setImage(file)
     }
@@ -26,7 +26,7 @@ const AddBackgroundForm = () => {
 
   const handleAddClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    if (image) uploadImg.mutate(image)
+    if (image) uploadImg.mutate({ image, name: imgName })
 
     setImage(null)
     setImgName('')

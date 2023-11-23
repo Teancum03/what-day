@@ -4,6 +4,7 @@ import express from 'express'
 import testingTipRouter from './routes/testingTipsRoutes'
 import galleryRouter from './routes/galleryRoutes'
 import winsRouter from './routes/winsRoutes'
+import userImgsRouter from './routes/userImgsRoutes'
 
 const server = express()
 server.use(express.json())
@@ -19,5 +20,6 @@ if (process.env.NODE_ENV === 'production') {
 server.use('/api/v1/testing-tips', testingTipRouter)
 server.use('/api/v1/gallery', galleryRouter)
 server.use('/api/v1/wins', winsRouter)
+server.use('/api/v1/userImgs', userImgsRouter)
 
 export default server
