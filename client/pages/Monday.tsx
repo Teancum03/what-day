@@ -1,6 +1,6 @@
 import PageTitle from '@/components/PageTitle'
 import Affirmation from '../components/Affirmations'
-import AffirmationComponent from '@/apis/langchain/affirmationInsight'
+import AffirmationComponent from '@/components/AffirmationInsight'
 
 function Monday() {
   return (
