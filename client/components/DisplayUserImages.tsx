@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 interface selectedImg {
   imageSrc: string
-  imageName: string
+  imageName?: string
 }
 
 function DisplayUserImages() {
@@ -14,14 +14,11 @@ function DisplayUserImages() {
     const imageSrc = event.currentTarget
       .querySelector('img')
       ?.getAttribute('src')
-    const imageName = event.currentTarget.querySelector('h4')?.textContent
-    if (!imageSrc || !imageName) return
+    let imageName = event.currentTarget.querySelector('h4')?.textContent
+    if (!imageSrc) return
+    if (!imageName) imageName = 'No Name'
     setSelectedImage({ imageSrc, imageName })
     console.log('imageSrc', imageSrc)
-  }
-
-  const handleCloseModal = () => {
-    setSelectedImage(null)
   }
 
   const {
@@ -41,11 +38,7 @@ function DisplayUserImages() {
       {selectedImage && (
         <div className="userImageDisplayed">
           <h4 className="userImgName">{selectedImage.imageName}</h4>
-          <img
-            className="modalImg"
-            alt={selectedImage.imageName}
-            src={selectedImage.imageSrc}
-          />
+          <img alt="user " src={selectedImage.imageSrc} />
         </div>
       )}
       <div className="backgroundImageGrid">
