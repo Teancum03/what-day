@@ -11,7 +11,7 @@ export default function Affirmation() {
   } = useQuery({ queryKey: ['affirmation'], queryFn: getAffirmation });
 
   const handleGetNewAffirmation = async () => {
-    // Fetch a new affirmation
+    
     await refetchAffirmation();
   };
 
@@ -24,7 +24,7 @@ export default function Affirmation() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <h1 className="text-2xl font-bold mb-4">Affirmation: {affirmation.affirmation}</h1>
       <button
         onClick={handleGetNewAffirmation}
