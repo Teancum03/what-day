@@ -7,3 +7,7 @@ export async function getIdeas(): Promise<TeamTime[]> {
   return response.body.idea
 }
 
+export async function addIdea(idea: TeamTime): Promise<TeamTime> {
+  const response = await request.post('/api/v1/team-time').send({ idea })
+  return response.body
+}
