@@ -1,10 +1,21 @@
 import express from 'express'
 import multer from 'multer'
+import crypto from 'crypto'
 
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
+import {
+  S3Client,
+  PutObjectCommand,
+  GetObjectCommand,
+} from '@aws-sdk/client-s3'
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
+
+import { addBackgroundImage } from '../db/functions/backgroundImagesDB'
+import { getAllBackgroundImages } from '../db/functions/backgroundImagesDB'
+
 import dotenv from 'dotenv'
-
 dotenv.config()
+
+const randomImageName = () => crypto.randomBytes(32).toString('hex')
 
 const BUCKET_NAME = process.env.BUCKET_NAME || 'no-bucket-name'
 const BUCKET_REGION = process.env.BUCKET_REGION || 'no-bucket-region'
@@ -26,7 +37,8 @@ const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
 
 router.post('/', upload.single('image'), async (req, res) => {
-  const { name } = req.body
+  const nameId = randomImageName()
+  const { imgName, userName } = req.body
 
   if (!req.file) {
     res.status(400).send('No file uploaded.')
@@ -35,14 +47,31 @@ router.post('/', upload.single('image'), async (req, res) => {
 
   const params = {
     Bucket: BUCKET_NAME,
-    Key: name,
+    Key: nameId,
     Body: req.file?.buffer,
     ContentType: req.file?.mimetype,
   }
   const command = new PutObjectCommand(params)
   await s3.send(command)
 
+  await addBackgroundImage({ imgName, nameId, userName })
+
   res.send({})
+})
+
+router.get('/', async (req, res) => {
+  const backgroundImages = await getAllBackgroundImages()
+  for (const image of backgroundImages) {
+    const getObjectParams = {
+      Bucket: BUCKET_NAME,
+      Key: image.name_id,
+    }
+    const command = new GetObjectCommand(getObjectParams)
+    const url = await getSignedUrl(s3, command, { expiresIn: 3600 })
+    image.url = url
+  }
+
+  res.send(backgroundImages)
 })
 
 export default router

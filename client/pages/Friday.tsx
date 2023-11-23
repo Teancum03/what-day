@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getImages } from '@/apis/galleryApi'
 import DisplayImage from '@/components/DisplayImage'
 import AddBackgroundForm from '@/components/AddBackGroundForm'
+import DisplayUserImages from '@/components/DisplayUserImages'
 
 function Friday() {
   const {
@@ -22,13 +23,11 @@ function Friday() {
           <DisplayImage key={image.id} image={image} />
         ))}
       </div>
-      <div className="userImagesDisplay">
-        <div className="text-xl tracking-tight md:text-2xl xl:text-3xl">
-          {images.photos.map((image) => (
-            <DisplayImage key={image.id} image={image} />
-          ))}
+      <div>
+        <div className="userImagesDisplay">
+          <DisplayUserImages />
+          <AddBackgroundForm />
         </div>
-        <AddBackgroundForm />
       </div>
     </>
   )

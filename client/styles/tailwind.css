@@ -319,6 +319,7 @@ h3 {
   line-height: 1;
   font-weight: 500;
   height: 35px;
+  margin: 0.5rem;
 }
 .Button.green {
   background-color: var(--green-4);
@@ -352,6 +353,7 @@ h3 {
   margin: 1rem;
   gap: 1rem;
   padding: 1rem;
+  justify-items: center;
   border: solid black 1px;
   border-radius: 1rem;
 }
@@ -359,8 +361,28 @@ h3 {
 .AddBackgroundForm {
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: min-content;
   padding: 0.5rem;
   align-items: center;
   justify-items: left;
   gap: 0.5rem;
+}
+
+.backgroundImageGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.backgroundFormComponent h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--violet-11);
+}
+
+.backgroundFormComponent {
+  padding: 0.5rem;
+  border-radius: 1rem;
 }

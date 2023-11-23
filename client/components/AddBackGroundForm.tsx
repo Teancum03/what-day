@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
-import uploadBackgroundImg from '@/apis/uploadBackgroundImg'
-
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { uploadBackgroundImg } from '@/apis/uploadBackgroundImg'
 const AddBackgroundForm = () => {
+  const queryClient = useQueryClient()
   const uploadImg = useMutation({
     mutationFn: uploadBackgroundImg,
     onSuccess: () => {
       console.log('Image uploaded')
+      queryClient.invalidateQueries({ queryKey: ['userBackgrounds'] })
     },
   })
   const [image, setImage] = useState<File | null>(null)
@@ -26,7 +27,7 @@ const AddBackgroundForm = () => {
 
   const handleAddClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    if (image) uploadImg.mutate({ image, name: imgName })
+    if (image) uploadImg.mutate({ image, imgName, userName: 'testUserName' })
 
     setImage(null)
     setImgName('')
@@ -39,7 +40,7 @@ const AddBackgroundForm = () => {
   }
 
   return (
-    <div>
+    <div className="backgroundFormComponent">
       <h2>Add A Background</h2>
       <form className="AddBackgroundForm">
         <label className="Label" htmlFor="imgName">
@@ -76,10 +77,10 @@ const AddBackgroundForm = () => {
         </div>
 
         <div>
-          <button className="Button" onClick={handleAddClick}>
+          <button className="Button green" onClick={handleAddClick}>
             Add
           </button>
-          <button className="Button" onClick={handleClearClick}>
+          <button className="Button red" onClick={handleClearClick}>
             Clear
           </button>
         </div>
