@@ -354,7 +354,7 @@ h3 {
   gap: 1rem;
   padding: 1rem;
   justify-items: center;
-  border: solid black 1px;
+  border: solid var(--violet-11) 1px;
   border-radius: 1rem;
 }
 
@@ -368,9 +368,24 @@ h3 {
   gap: 0.75rem;
 }
 
+.userImgName {
+  font-size: 1.5rem;
+}
+
 .formLabel {
   font-size: 1.5rem;
   align-self: center;
+}
+
+.userImageDisplayed {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: left;
+  padding: 0.5rem;
+  background-color: snow;
+  border-radius: 1rem;
+  border: solid var(--violet-11) 1px;
 }
 
 .formInput {

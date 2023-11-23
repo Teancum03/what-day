@@ -7,7 +7,7 @@ interface BackgroundImageData {
 }
 
 interface BackgroundImage {
-  imgName: string
+  imageName: string
   nameId: string
   userName: string
   url?: string
@@ -33,7 +33,7 @@ export async function getAllBackgroundImages(): Promise<BackgroundImage[]> {
   const db = connection
   return await db('background_images').select(
     'user_name as userName',
-    'img_name as imgName',
+    'img_name as imageName',
     'name_id as nameId',
     'id as id'
   )
