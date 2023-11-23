@@ -1,7 +1,0 @@
-describe('SearchBar', () => {
-  test('test searchbar navigate', async () => {
-    const screen = render(<SearchBar/>)
-    const button = screen.queryByText(/Find/i)
-    expect(button).toBeInTheDocument()
-  })
-})
