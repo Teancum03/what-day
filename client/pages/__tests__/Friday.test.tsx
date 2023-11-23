@@ -62,12 +62,19 @@ describe('Friday page renders', () => {
   })
 
   test('Images rendered', async () => {
-    nock('http://localhost').get('/api/v1/gallery').reply(200, MOCK_DATA)
+    const scope = nock('http://localhost')
+      .get('/api/v1/gallery')
+      .query({ search: 'default' })
+      .reply(200, MOCK_DATA)
+
     const screen = renderRoute('/friday')
     await waitFor(() =>
       expect(screen.queryByText('Loading...')).not.toBeInTheDocument()
     )
-    const error = screen.getByAltText(/Tyler Lastovich/)
-    expect(error).toBeInTheDocument()
+    
+    expect(scope.isDone()).toBe(true)
+    const data = screen.getByAltText(/Tyler Lastovich/i)
+    
+    expect(data).toBeInTheDocument()
   })
 })
