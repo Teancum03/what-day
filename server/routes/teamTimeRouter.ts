@@ -26,7 +26,6 @@ router.post('/', async (req, res) => {
       res.sendStatus(400)
       return
     }
-    console.log(newIdea)
     const idea = await db.addProjectIdea(newIdea)
 
     res.json({ idea })

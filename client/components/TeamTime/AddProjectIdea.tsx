@@ -82,7 +82,7 @@ const AddProjectIdea = ({ user }: { user: User }) => {
       </Form.Field>
       <Form.Submit asChild>
         <button
-          className="Button"
+          className="NewIdeaButton"
           onClick={handlesubmit}
           type="submit"
           style={{ marginTop: 10 }}

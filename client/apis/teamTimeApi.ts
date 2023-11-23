@@ -8,8 +8,6 @@ export async function getIdeas(): Promise<TeamTime[]> {
 }
 
 export async function addIdea(idea: TeamTime): Promise<TeamTime> {
-  console.log(idea)
   const response = await request.post('/api/v1/team-time').send({ idea })
-  console.log(response.body.idea)
   return response.body.idea
 }
