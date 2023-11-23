@@ -38,10 +38,22 @@ const MOCK_DATA = {
   next_page: 'https://api.pexels.com/v1/search/?page=2&per_page=1&query=Nature',
 }
 
-import { describe, expect, test } from 'vitest'
+import { afterAll, beforeEach, describe, expect, test, vi } from 'vitest'
 import nock from 'nock'
 import { renderRoute } from '@/test/setup'
 import { waitFor } from '@testing-library/react'
+import * as reactRouterDom from 'react-router-dom'
+
+const navigate = vi.fn()
+const mockedUseNavigate = vi.fn()
+
+beforeEach(() => {
+  vi.spyOn(reactRouterDom, 'useNavigate').mockImplementation(() => navigate)
+})
+
+afterAll(() => {
+  vi.restoreAllMocks()
+})
 
 describe('Friday page renders', () => {
   test('Loading text', async () => {
@@ -68,13 +80,44 @@ describe('Friday page renders', () => {
       .reply(200, MOCK_DATA)
 
     const screen = renderRoute('/friday')
+
     await waitFor(() =>
       expect(screen.queryByText('Loading...')).not.toBeInTheDocument()
     )
-    
+
     expect(scope.isDone()).toBe(true)
+
     const data = screen.getByAltText(/Tyler Lastovich/i)
-    
     expect(data).toBeInTheDocument()
+  })
+})
+
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual('react-router-dom')
+  return {
+    ...(actual as any),
+    useNavigate: () => mockedUseNavigate,
+  }
+})
+
+describe('SearchBar', () => {
+  test('SearchBar renders', async () => {
+    const scope = nock('http://localhost')
+      .get('/api/v1/gallery')
+      .query({ search: 'default' })
+      .reply(200, MOCK_DATA)
+
+    const { user, ...screen } = renderRoute('/friday')
+    await waitFor(() =>
+      expect(screen.queryByText('Loading...')).not.toBeInTheDocument()
+    )
+    const button = await screen.queryByText(/Find/)
+    const input = await screen.queryByLabelText('Search')
+    await user.type(input as Element, 'helloworld')
+    await user.click(button as HTMLElement)
+    expect(navigate).toHaveBeenCalledWith({
+      pathname: '/friday',
+      search: `image=helloworld`,
+    })
   })
 })

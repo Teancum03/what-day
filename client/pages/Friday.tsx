@@ -28,6 +28,7 @@ function Friday() {
       <PageTitle descriptor="Fun Frame" day="Friday" />
       <div className="text-xl tracking-tight md:text-2xl xl:text-3xl">
         <SearchBar />
+        <h1>test</h1>
         {images.photos.map((image) => (
           <DisplayImage key={image.id} image={image} />
         ))}
