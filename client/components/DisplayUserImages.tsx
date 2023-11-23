@@ -38,7 +38,7 @@ function DisplayUserImages() {
       {selectedImage && (
         <div className="userImageDisplayed">
           <h4 className="userImgName">{selectedImage.imageName}</h4>
-          <img alt="user " src={selectedImage.imageSrc} />
+          <img alt={selectedImage.imageName} src={selectedImage.imageSrc} />
         </div>
       )}
       <div className="backgroundImageGrid">
