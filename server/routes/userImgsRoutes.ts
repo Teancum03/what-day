@@ -61,10 +61,11 @@ router.post('/', upload.single('image'), async (req, res) => {
 
 router.get('/', async (req, res) => {
   const backgroundImages = await getAllBackgroundImages()
+  console.log('backgroundImages', backgroundImages)
   for (const image of backgroundImages) {
     const getObjectParams = {
       Bucket: BUCKET_NAME,
-      Key: image.name_id,
+      Key: image.nameId,
     }
     const command = new GetObjectCommand(getObjectParams)
     const url = await getSignedUrl(s3, command, { expiresIn: 3600 })

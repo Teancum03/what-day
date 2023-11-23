@@ -14,10 +14,14 @@ function DisplayUserImages() {
   if (error) return <div>Error:</div>
 
   return (
-    <div className='backgroundImageGrid'>
-      {images.map((image) => (
-        <img key={image.imageId} alt={image.imageName} src={image.url} />
-      ))}
+    <div className="backgroundImageGrid">
+      {images &&
+        images.map((image) => (
+          <div key={image.imageId}>
+            <h4 className="userImgName">{image.imageName}</h4>
+            <img className="userImg" alt={image.imageName} src={image.url} />
+          </div>
+        ))}
     </div>
   )
 }

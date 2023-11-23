@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { uploadBackgroundImg } from '@/apis/uploadBackgroundImg'
+
 const AddBackgroundForm = () => {
   const queryClient = useQueryClient()
   const uploadImg = useMutation({
@@ -10,6 +11,7 @@ const AddBackgroundForm = () => {
       queryClient.invalidateQueries({ queryKey: ['userBackgrounds'] })
     },
   })
+
   const [image, setImage] = useState<File | null>(null)
   const [imgName, setImgName] = useState<string>('')
 
@@ -27,7 +29,9 @@ const AddBackgroundForm = () => {
 
   const handleAddClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    if (image) uploadImg.mutate({ image, imgName, userName: 'testUserName' })
+    if (image) {
+      uploadImg.mutate({ image, imgName, userName: 'testUserName' })
+    }
 
     setImage(null)
     setImgName('')
@@ -41,46 +45,47 @@ const AddBackgroundForm = () => {
 
   return (
     <div className="backgroundFormComponent">
-      <h2>Add A Background</h2>
+      <h2 className="mt-2 text-center font-header xl:text-4xl">
+        Add A Background
+      </h2>
       <form className="AddBackgroundForm">
-        <label className="Label" htmlFor="imgName">
+        <label className="formLabel" htmlFor="imgName">
           Name
         </label>
         <input
-          className="Input"
+          className="formInput"
           type="text"
           name="imgName"
           id="imgName"
           value={imgName}
           onChange={handleImgNameChange}
         />
-        <div>
-          {image && (
+
+        {image === null ? (
+          <input
+            type="file"
+            className="customFileUpload"
+            name="uploadedImg"
+            id="uploadedImg"
+            onChange={handleImageChange}
+          />
+        ) : (
+          <>
+            <h3 className="formLabel">Image</h3>
             <img
+              className="previewImage"
               src={URL.createObjectURL(image)}
               alt="Preview"
               style={{ maxWidth: '200px', maxHeight: '200px' }}
             />
-          )}
+          </>
+        )}
 
-          {image === null && (
-            <>
-              <label htmlFor="uploadedImg">Choose Image</label>
-              <input
-                type="file"
-                name="uploadedImg"
-                id="uploadedImg"
-                onChange={handleImageChange}
-              />
-            </>
-          )}
-        </div>
-
-        <div>
+        <div className="buttonsDiv">
           <button className="Button green" onClick={handleAddClick}>
             Add
           </button>
-          <button className="Button red" onClick={handleClearClick}>
+          <button className="Button green" onClick={handleClearClick}>
             Clear
           </button>
         </div>
