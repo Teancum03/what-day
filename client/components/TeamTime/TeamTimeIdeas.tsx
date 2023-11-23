@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { TeamTime } from '@models/teamTime'
 import { getIdeas } from '@/apis/teamTimeApi'
 import IdeaDialog from '@/components/TeamTime/IdeaDialog'
+import AddProjectIdea from '@/components/TeamTime/AddProjectIdea'
 
 export function TeamTimeIdeas() {
   const {
@@ -21,12 +22,15 @@ export function TeamTimeIdeas() {
   }
 
   return (
-    <div className=" flex  flex-wrap justify-center">
-      {ideas.map((idea) => (
-        <div className="m-5  w-auto p-10 " key={idea.id}>
-          <IdeaDialog idea={idea.idea} description={idea.description} />
-        </div>
-      ))}
-    </div>
+    <>
+      <div className=" flex  flex-wrap justify-center">
+        {ideas.map((idea) => (
+          <div className="m-5  w-auto p-10 " key={idea.id}>
+            <IdeaDialog idea={idea.idea} description={idea.description} />
+          </div>
+        ))}
+      </div>
+      <AddProjectIdea />
+    </>
   )
 }
