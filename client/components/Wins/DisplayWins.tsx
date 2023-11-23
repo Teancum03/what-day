@@ -40,13 +40,6 @@ export default function DisplayWins({ name }: Props) {
     setForm(initialFormData)
   }
 
-   // isPending is react query v5
-  // if (fruitMutation.isPending {
-  //   return <p>Adding your fruit!</p>
-  // }
-
- 
-
   return (
     <>
       <div id="add-win">
@@ -62,10 +55,9 @@ export default function DisplayWins({ name }: Props) {
                 <form
                   className="ml-4 flex flex-grow flex-col"
                   onSubmit={handleSubmit}
-                  aria-label="Add Win"
-  
                 >
                   <textarea
+                    aria-label="Add Win"
                     className="rounded-sm border border-gray-500 bg-transparent p-3"
                     name=""
                     id=""
@@ -77,13 +69,13 @@ export default function DisplayWins({ name }: Props) {
                     <button
                       className="flex h-8 items-center rounded-sm bg-gray-300 px-3 text-xs hover:bg-gray-400"
                       type="submit"
+                      name="post"
                     >
                       Post
                     </button>
                   </div>
-                </form>   
-              )
-              }
+                </form>
+              )}
             </div>
           </div>
           {wins
@@ -95,7 +87,7 @@ export default function DisplayWins({ name }: Props) {
                 className="flex w-full border-b border-gray-300 p-8"
               >
                 {/* icon */}
-                
+
                 <div>
                   <Jdenticon size="36" value={win.author} />
                 </div>
