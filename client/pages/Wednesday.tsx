@@ -10,8 +10,6 @@ function Wednesday() {
     marginTop: '-48px',
   }
 
-  console.log(user?.name)
-
   return (
     <>
       <PageTitle descriptor="Weekly Win" day="Wednesday" />
@@ -19,7 +17,7 @@ function Wednesday() {
         className="text-xl tracking-tight md:text-2xl xl:text-3xl"
         style={styles}
       >
-        <DisplayWins name={user?.longName} />
+        {user && <DisplayWins name={user?.longName} />}
       </div>
     </>
   )

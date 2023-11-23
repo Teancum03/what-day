@@ -8,11 +8,11 @@ export async function seed(knex) {
   await knex('wins').insert([
     {
       title: 'My win this week was finding the biggest anthill!',
-      author: 'Anonymous Aardvark',
+      author: 'Anonymous MiddleName Aardvark',
     },
     {
       title: 'Today my brothers and I got together and watched the sunset',
-      author: 'Mysterious Meerkat',
+      author: 'Mysterious MiddleName Meerkat',
     },
   ])
 }
