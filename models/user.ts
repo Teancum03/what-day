@@ -6,3 +6,5 @@ export interface User {
 export interface ContextType {
   user: User | null
 }
+
+
