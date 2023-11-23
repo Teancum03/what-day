@@ -30,7 +30,9 @@ export function TeamTimeIdeas() {
           </div>
         ))}
       </div>
-      <AddProjectIdea />
+      <div>
+        <AddProjectIdea />
+      </div>
     </>
   )
 }

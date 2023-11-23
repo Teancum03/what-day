@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { getAllIdeas } from '../db/functions/teamTimeDB'
+import * as db from '../db/functions/teamTimeDB'
 import { TeamTime } from '@models/teamTime'
 
 const router = express.Router()
@@ -8,7 +8,7 @@ const router = express.Router()
 // GET /api/v1/team-time
 router.get('/', async (req, res) => {
   try {
-    const idea: TeamTime[] = await getAllIdeas()
+    const idea: TeamTime[] = await db.getAllIdeas()
     res.json({ idea })
   } catch (error) {
     res.status(500).json({
@@ -17,18 +17,19 @@ router.get('/', async (req, res) => {
   }
 })
 
-// POST /api/v1/team-time
+//POST / api / v1 / team - time
 router.post('/', async (req, res) => {
   try {
-    const newIdea = req.body.idea as TeamTime
-// we need to check this!
+    const newIdea = req.body as TeamTime
+
     if (!newIdea) {
       res.sendStatus(400)
-      return 
+      return
     }
 
-    const idea = await getAllIdeas()
-    res.json({idea})
+    const idea = await db.addProjectIdea(newIdea)
+
+    res.json({ idea })
   } catch (error) {
     res.status(500).json({
       error: `something went wrong in the TeamTime route: ${error}`,
@@ -37,5 +38,3 @@ router.post('/', async (req, res) => {
 })
 
 export default router
-
-

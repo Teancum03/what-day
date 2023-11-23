@@ -5,16 +5,14 @@ export async function getAllIdeas(db = connection): Promise<TeamTime[]> {
   const ideas = await db<TeamTime[]>('team_time').select(
     'id',
     'idea',
-    'description',
-    'author'
+    'description'
   )
   return ideas
 }
 
 export async function addProjectIdea(newIdea: TeamTime): Promise<TeamTime> {
-  const [addNewIdea] = await connection
+  const [addNewIdea] = await connection('team_time')
     .insert(newIdea)
-    .into('team_time')
     .returning('*')
   return addNewIdea
 }
