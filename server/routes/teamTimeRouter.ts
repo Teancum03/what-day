@@ -20,13 +20,13 @@ router.get('/', async (req, res) => {
 //POST / api / v1 / team - time
 router.post('/', async (req, res) => {
   try {
-    const newIdea = req.body as TeamTime
+    const newIdea = req.body.idea as TeamTime
 
     if (!newIdea) {
       res.sendStatus(400)
       return
     }
-
+    console.log(newIdea)
     const idea = await db.addProjectIdea(newIdea)
 
     res.json({ idea })

@@ -3,8 +3,9 @@ import { TeamTime } from '@models/teamTime'
 import { getIdeas } from '@/apis/teamTimeApi'
 import IdeaDialog from '@/components/TeamTime/IdeaDialog'
 import AddProjectIdea from '@/components/TeamTime/AddProjectIdea'
+import { User } from '@models/user'
 
-export function TeamTimeIdeas() {
+export function TeamTimeIdeas({ user }: { user: User }) {
   const {
     data: ideas,
     isLoading,
@@ -26,12 +27,16 @@ export function TeamTimeIdeas() {
       <div className=" flex  flex-wrap justify-center">
         {ideas.map((idea) => (
           <div className="m-5  w-auto p-10 " key={idea.id}>
-            <IdeaDialog idea={idea.idea} description={idea.description} />
+            <IdeaDialog
+              idea={idea.idea}
+              description={idea.description}
+              author={idea.author}
+            />
           </div>
         ))}
       </div>
       <div>
-        <AddProjectIdea />
+        <AddProjectIdea user={user} />
       </div>
     </>
   )

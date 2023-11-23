@@ -5,6 +5,7 @@ import '@/styles/tailwind.css'
 import { TeamTime } from '@models/teamTime'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { addIdea } from '@/apis/teamTimeApi'
+import { User } from '@models/user'
 
 const initialFormData = {
   idea: '',
@@ -12,7 +13,7 @@ const initialFormData = {
   author: '',
 }
 
-const AddProjectIdea = () => {
+const AddProjectIdea = ({ user }: { user: User }) => {
   const [form, setForm] = useState<TeamTime>(initialFormData as TeamTime)
 
   const queryClient = useQueryClient()
@@ -24,19 +25,21 @@ const AddProjectIdea = () => {
     },
   })
 
-  function handlesubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handlesubmit(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
-    addIdeaMutation.mutate(form)
+    addIdeaMutation.mutate({ ...form, author: user.longName })
     setForm(initialFormData as TeamTime)
   }
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
     setForm({ ...form, [event.target.name]: event.target.value })
   }
 
   return (
-    <Form.Root onSubmit={handlesubmit} className="FormRoot">
-      <Form.Field onChange={handleChange} className="FormField" name="email">
+    <Form.Root className="FormRoot">
+      <Form.Field className="FormField" name="idea">
         <div // add handle change to others!!! or figure this out
           style={{
             display: 'flex',
@@ -47,7 +50,14 @@ const AddProjectIdea = () => {
           <Form.Label className="FormLabel">Idea:</Form.Label>
         </div>
         <Form.Control asChild>
-          <input className="Input" type="email" required />
+          <input
+            className="Input"
+            name="idea"
+            onChange={handleChange}
+            value={form.idea}
+            type="text"
+            required
+          />
         </Form.Control>
       </Form.Field>
       <Form.Field className="FormField" name="question">
@@ -61,11 +71,22 @@ const AddProjectIdea = () => {
           <Form.Label className="FormLabel">Description:</Form.Label>
         </div>
         <Form.Control asChild>
-          <textarea className="Textarea" required />
+          <textarea
+            className="Textarea"
+            name="description"
+            onChange={handleChange}
+            value={form.description}
+            required
+          />
         </Form.Control>
       </Form.Field>
       <Form.Submit asChild>
-        <button className="Button" style={{ marginTop: 10 }}>
+        <button
+          className="Button"
+          onClick={handlesubmit}
+          type="submit"
+          style={{ marginTop: 10 }}
+        >
           Submit
         </button>
       </Form.Submit>

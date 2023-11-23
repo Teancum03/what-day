@@ -5,7 +5,8 @@ export async function getAllIdeas(db = connection): Promise<TeamTime[]> {
   const ideas = await db<TeamTime[]>('team_time').select(
     'id',
     'idea',
-    'description'
+    'description',
+    'author'
   )
   return ideas
 }
