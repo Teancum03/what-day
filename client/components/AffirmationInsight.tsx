@@ -58,17 +58,20 @@ const AffirmationComponent: React.FC = () => {
     <div className="insight">
       <div className="mx-auto mt-20 max-w-xl">
         {/* User Input Text Area */}
-        <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
+        <label
+          htmlFor="userMessage"
+          className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700"
+        >
           Your Message
-          <textarea
-            id="userMessage"
-            rows={5}
-            value={userInput}
-            onChange={handleInputChange}
-            className="mb-3 block w-full rounded border border-gray-200 bg-gray-200 px-4 py-3 text-sm leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none" // Added text-sm class
-            placeholder="Your Message"
-          ></textarea>
         </label>
+        <textarea
+          id="userMessage"
+          rows={4}
+          value={userInput}
+          onChange={handleInputChange}
+          className="mb-3 block w-full rounded border border-gray-200 bg-gray-200 px-4 py-3 text-sm leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none" // Added text-sm class
+          placeholder="Your Message"
+        ></textarea>
 
         {/* Submit Button */}
         <div className="flex justify-end">
@@ -84,15 +87,19 @@ const AffirmationComponent: React.FC = () => {
         {/* AI Response Text Area */}
         {aiResponse && (
           <div className="mb-4 mt-8">
-            <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
+            <label
+              htmlFor="aiResponse"
+              className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700"
+            >
               AI Response
-              <textarea
-                rows={8}
-                value={aiResponse}
-                className="block w-full rounded border border-gray-200 bg-gray-200 px-4 py-3 text-sm leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none" // Added text-sm class
-                readOnly
-              ></textarea>
             </label>
+            <textarea
+              id="aiResponse"
+              rows={10}
+              value={aiResponse}
+              className="block w-full rounded border border-gray-200 bg-gray-200 px-4 py-3 text-sm leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none" // Added text-sm class
+              readOnly
+            ></textarea>
           </div>
         )}
       </div>

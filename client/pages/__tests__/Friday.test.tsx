@@ -95,7 +95,7 @@ describe('Friday page renders', () => {
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom')
   return {
-    ...(actual as any),
+    ...(actual as typeof reactRouterDom),
     useNavigate: () => mockedUseNavigate,
   }
 })
@@ -119,5 +119,6 @@ describe('SearchBar', () => {
       pathname: '/friday',
       search: `image=helloworld`,
     })
+    expect(scope.isDone()).toBe(true)
   })
 })

@@ -61,7 +61,6 @@ router.post('/', upload.single('image'), async (req, res) => {
 
 router.get('/', async (req, res) => {
   const backgroundImages = await getAllBackgroundImages()
-  console.log('backgroundImages', backgroundImages)
   for (const image of backgroundImages) {
     const getObjectParams = {
       Bucket: BUCKET_NAME,

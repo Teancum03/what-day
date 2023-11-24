@@ -10,7 +10,7 @@ interface selectedImg {
 function DisplayUserImages() {
   const [selectedImage, setSelectedImage] = useState<selectedImg | null>(null)
 
-  const selectImg = (event: React.MouseEvent<HTMLDivElement>) => {
+  const selectImg = (event: React.MouseEvent<HTMLButtonElement>) => {
     const imageSrc = event.currentTarget
       .querySelector('img')
       ?.getAttribute('src')
@@ -44,14 +44,14 @@ function DisplayUserImages() {
       <div className="backgroundImageGrid">
         {images &&
           images.map((image) => (
-            <div
+            <button
               className="userImageDisplayed"
               key={image.imageId}
               onClick={selectImg}
             >
               <h4 className="userImgName">{image.imageName}</h4>
               <img className="userImg" alt={image.imageName} src={image.url} />
-            </div>
+            </button>
           ))}
       </div>
     </div>
