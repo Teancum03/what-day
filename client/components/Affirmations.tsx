@@ -1,6 +1,5 @@
-import React from 'react';
-import { getAffirmation } from '../apis/apiclient';
-import { useQuery } from '@tanstack/react-query';
+import { getAffirmation } from '../apis/apiclient'
+import { useQuery } from '@tanstack/react-query'
 
 export default function Affirmation() {
   const {
@@ -8,32 +7,30 @@ export default function Affirmation() {
     isLoading,
     error,
     refetch: refetchAffirmation,
-  } = useQuery({ queryKey: ['affirmation'], queryFn: getAffirmation });
+  } = useQuery({ queryKey: ['affirmation'], queryFn: getAffirmation })
 
   const handleGetNewAffirmation = async () => {
-    
-    await refetchAffirmation();
-  };
+    await refetchAffirmation()
+  }
 
   if (error) {
-    return <p>Something went wrong</p>;
+    return <p>Something went wrong</p>
   }
 
   if (!affirmation || isLoading) {
-    return <p>{`Loading`}</p>;
+    return <p>Loading affirmations...</p>
   }
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-2xl font-bold mb-4"> {affirmation.affirmation}</h1>
+      <h1 className="mb-4 text-2xl font-bold"> {affirmation.affirmation}</h1>
       <button
         onClick={handleGetNewAffirmation}
-        className="bg-gray-400 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded text-sm"
+        className="rounded bg-gray-400 px-4 py-2 text-sm font-bold text-gray-800 hover:bg-gray-300"
         type="button"
       >
         Get New Affirmation
       </button>
     </div>
-  );
+  )
 }
-

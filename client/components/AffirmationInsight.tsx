@@ -3,7 +3,6 @@ import { getAffirmation } from '@/apis/apiclient'
 import { useQuery } from '@tanstack/react-query'
 import { Affirmation } from '@models/affirmation'
 import { generateInsight } from '@/apis/langchain/affirmationInsight'
-import { load } from 'nock'
 
 const AffirmationComponent: React.FC = () => {
   const {
@@ -36,6 +35,7 @@ const AffirmationComponent: React.FC = () => {
     if (submitted) {
       loadInsight()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitted, affirmationData, userInput])
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -47,7 +47,7 @@ const AffirmationComponent: React.FC = () => {
   }
 
   if (error) {
-    return <p>Something went wrong</p>
+    return <p>Something went wrong loading your insight</p>
   }
 
   if (!affirmationData || isLoading) {
@@ -60,15 +60,15 @@ const AffirmationComponent: React.FC = () => {
         {/* User Input Text Area */}
         <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
           Your Message
+          <textarea
+            id="userMessage"
+            rows={5}
+            value={userInput}
+            onChange={handleInputChange}
+            className="mb-3 block w-full rounded border border-gray-200 bg-gray-200 px-4 py-3 text-sm leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none" // Added text-sm class
+            placeholder="Your Message"
+          ></textarea>
         </label>
-        <textarea
-          id="userMessage"
-          rows={5}
-          value={userInput}
-          onChange={handleInputChange}
-          className="mb-3 block w-full rounded border border-gray-200 bg-gray-200 px-4 py-3 text-sm leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none" // Added text-sm class
-          placeholder="Your Message"
-        ></textarea>
 
         {/* Submit Button */}
         <div className="flex justify-end">
@@ -86,13 +86,13 @@ const AffirmationComponent: React.FC = () => {
           <div className="mb-4 mt-8">
             <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
               AI Response
+              <textarea
+                rows={8}
+                value={aiResponse}
+                className="block w-full rounded border border-gray-200 bg-gray-200 px-4 py-3 text-sm leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none" // Added text-sm class
+                readOnly
+              ></textarea>
             </label>
-            <textarea
-              rows={8}
-              value={aiResponse}
-              className="block w-full rounded border border-gray-200 bg-gray-200 px-4 py-3 text-sm leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none" // Added text-sm class
-              readOnly
-            ></textarea>
           </div>
         )}
       </div>

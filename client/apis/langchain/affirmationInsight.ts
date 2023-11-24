@@ -28,8 +28,6 @@ export const generateInsight = async (
       userMessage: userMessage,
     })
 
-    console.log('Insight Response:', response)
-
     return response.text
   } catch (error) {
     console.error('Error generating insight:', error)
