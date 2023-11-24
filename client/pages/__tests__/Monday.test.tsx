@@ -31,7 +31,7 @@ it('renders the error message', async () => {
     expect(screen.queryByText('Loading')).not.toBeInTheDocument()
   })
 
-  const errorMessage = await screen.findByText(/Something went wrong/i)
+  const errorMessage = await screen.findByText('Something went wrong')
   expect(errorMessage).toBeInTheDocument()
 })
 
